@@ -2,5 +2,6 @@
 target/
 *.iml
 server/src/main/resources/application.conf
+server/src/main/resources/application.conf
 logs/
 
