@@ -5,8 +5,7 @@
  */
 package io.github.cloudiator.rest.api;
 
-import io.github.cloudiator.rest.model.NodeRequirements;
-import io.github.cloudiator.rest.model.Queue;
+import java.util.Map;
 import io.swagger.annotations.*;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
@@ -23,18 +22,18 @@ import javax.validation.Valid;
 import javax.validation.constraints.*;
 import java.util.List;
 
-@Api(value = "matchmaking", description = "the matchmaking API")
-public interface MatchmakingApi {
+@Api(value = "discovery", description = "the discovery API")
+public interface DiscoveryApi {
 
-    @ApiOperation(value = "", nickname = "solveMatchmaking", notes = "Solves a matchmaking problem", response = Queue.class, authorizations = {
+    @ApiOperation(value = "", nickname = "discoveryStatus", notes = "Gets the status of the discovery engine ", response = String.class, responseContainer = "Map", authorizations = {
         @Authorization(value = "ApiKeyAuth")
-    }, tags={ "matchmaking", })
+    }, tags={ "cloud", })
     @ApiResponses(value = { 
-        @ApiResponse(code = 202, message = "ACCEPTED", response = Queue.class) })
-    @RequestMapping(value = "/matchmaking",
+        @ApiResponse(code = 200, message = "OK ", response = Map.class, responseContainer = "Map") })
+    @RequestMapping(value = "/discovery/status",
         produces = { "application/json" }, 
         consumes = { "application/json" },
-        method = RequestMethod.PUT)
-    ResponseEntity<Queue> solveMatchmaking(@ApiParam(value = "The requirements with respect to nodes" ,required=true )  @Valid @RequestBody NodeRequirements nodeRequirements);
+        method = RequestMethod.GET)
+    ResponseEntity<Map<String, String>> discoveryStatus();
 
 }

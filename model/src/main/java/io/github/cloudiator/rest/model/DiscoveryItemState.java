@@ -9,17 +9,27 @@ import javax.validation.constraints.*;
 import com.fasterxml.jackson.annotation.JsonCreator;
 
 /**
- * Gets or Sets TaskType
+ * Gets or Sets DiscoveryItemState
  */
-public enum TaskType {
+public enum DiscoveryItemState {
   
-  BATCH("BATCH"),
+  NEW("NEW"),
   
-  SERVICE("SERVICE");
+  OK("OK"),
+  
+  REMOTELY_DELETED("REMOTELY_DELETED"),
+  
+  LOCALLY_DELETED("LOCALLY_DELETED"),
+  
+  DISABLED("DISABLED"),
+  
+  DELETED("DELETED"),
+  
+  UNKNOWN("UNKNOWN");
 
   private String value;
 
-  TaskType(String value) {
+  DiscoveryItemState(String value) {
     this.value = value;
   }
 
@@ -30,8 +40,8 @@ public enum TaskType {
   }
 
   @JsonCreator
-  public static TaskType fromValue(String text) {
-    for (TaskType b : TaskType.values()) {
+  public static DiscoveryItemState fromValue(String text) {
+    for (DiscoveryItemState b : DiscoveryItemState.values()) {
       if (String.valueOf(b.value).equals(text)) {
         return b;
       }
