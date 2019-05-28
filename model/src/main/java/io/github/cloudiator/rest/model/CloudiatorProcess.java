@@ -21,8 +21,8 @@ import javax.validation.constraints.*;
 @Validated
 @JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "processType", visible = true )
 @JsonSubTypes({
-  @JsonSubTypes.Type(value = ClusterProcess.class, name = "ClusterProcess"),
   @JsonSubTypes.Type(value = SingleProcess.class, name = "SingleProcess"),
+  @JsonSubTypes.Type(value = ClusterProcess.class, name = "ClusterProcess"),
 })
 
 public class CloudiatorProcess   {
@@ -84,6 +84,8 @@ public class CloudiatorProcess   {
     SPARK("SPARK"),
     
     FAAS("FAAS"),
+    
+    SIMULATION("SIMULATION"),
     
     UNKNOWN("UNKNOWN");
 
